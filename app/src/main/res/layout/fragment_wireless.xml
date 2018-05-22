@@ -5,15 +5,15 @@
     tools:context="org.netdroid.fragments.WirelessFragment">
 
     <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
-        android:text="Wireless"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        android:id="@+id/textView3" />
+        android:layout_marginTop="27dp"
+        android:text="@string/WirelessTabTitle"
+        android:textSize="40sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView4"
@@ -23,7 +23,7 @@
         android:layout_below="@+id/textView6"
         android:layout_marginStart="35dp"
         android:layout_marginTop="20dp"
-        android:text="SSID:" />
+        android:text="@string/wirelessSsidLabel" />
 
     <TextView
         android:id="@+id/textView5"
@@ -32,7 +32,7 @@
         android:layout_alignStart="@+id/textView4"
         android:layout_below="@+id/textView4"
         android:layout_marginTop="20dp"
-        android:text="MAC address:" />
+        android:text="@string/wirelessMacLabel" />
 
     <TextView
         android:id="@+id/textView6"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/textView4"
         android:layout_below="@+id/textView3"
-        android:text="Status:" />
+        android:text="@string/wirelessStatusLabel" />
 
     <TextView
         android:id="@+id/status"
@@ -72,7 +72,7 @@
         android:layout_alignStart="@+id/textView5"
         android:layout_below="@+id/textView5"
         android:layout_marginTop="16dp"
-        android:text="Link Speed:" />
+        android:text="@string/wirelessSpeedLabel" />
 
     <TextView
         android:id="@+id/textView12"
@@ -81,7 +81,7 @@
         android:layout_alignStart="@+id/TextView6"
         android:layout_below="@+id/TextView6"
         android:layout_marginTop="14dp"
-        android:text="IP Address:" />
+        android:text="@string/wirelessIpLabel" />
 
     <TextView
         android:id="@+id/ipAddress"
