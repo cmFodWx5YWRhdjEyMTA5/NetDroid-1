@@ -8,4 +8,8 @@
     <string name="wirelessSsidLabel">SSID</string>
     <string name="wirelessSpeedLabel">Link speed</string>
     <string name="wirelessIpLabel">IP Address</string>
+    <string name="wirelessChannel">CH :</string>
+    <string name="wirelessFreq">Freq :</string>
+    <string name="wirelessLinkSpeedButton">Speed chart</string>
+    <string name="wirelessFreqButton">Channels</string>
 </resources>

@@ -1,7 +1,6 @@
 package org.netdroid.fragments;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
@@ -21,7 +20,11 @@ import org.netdroid.R;
 
 public class WirelessFragment extends Fragment {
     //TODO: ON RESUME() -> IT SHOULD REFRESH DATA
-    TextView ssid,ipAddress,macAddress,status,linkSpeed;
+    TextView txtSsid;
+    TextView txtIpAddress;
+    TextView txtMacAddress;
+    TextView txtStatus;
+    TextView txtLinkSpeed;
 
     public WirelessFragment(){
 
@@ -36,11 +39,16 @@ public class WirelessFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v= inflater.inflate(R.layout.fragment_wireless, container, false);
-        ssid=v.findViewById(R.id.ssid);
-        ipAddress=v.findViewById(R.id.ipAddress);
-        macAddress=v.findViewById(R.id.macAddress);
-        status=v.findViewById(R.id.status);
-        linkSpeed=v.findViewById(R.id.linkSpeed);
+        txtSsid =v.findViewById(R.id.txtSsidVal);
+        txtSsid.setText("");
+        txtIpAddress =v.findViewById(R.id.txtIpVal);
+        txtIpAddress.setText("");
+        txtMacAddress =v.findViewById(R.id.txtMacVal);
+        txtMacAddress.setText("");
+        txtStatus =v.findViewById(R.id.txtStatusVal);
+        txtStatus.setText("");
+        txtLinkSpeed =v.findViewById(R.id.txtLinkVal);
+        txtLinkSpeed.setText("");
         setConnectionInfo();
         return v;
     }
@@ -50,24 +58,24 @@ public class WirelessFragment extends Fragment {
         WifiInfo wifiInfo;
         wifiInfo = wifiManager.getConnectionInfo();
         if(wifiManager.isWifiEnabled()==false){
-            status.setText("Enable the WIFI adpater");
-            status.setTextColor(Color.RED);
+            txtStatus.setText("Enable the WIFI adpater");
+            txtStatus.setTextColor(Color.RED);
 
         }
         else if(wifiInfo.getSupplicantState()!= SupplicantState.COMPLETED){
-            status.setText("Connect to a network");
-            status.setTextColor(Color.RED);
+            txtStatus.setText("Connect to a network");
+            txtStatus.setTextColor(Color.RED);
 
         }
         else {
-            status.setText("Connected");
-            status.setTextColor(Color.GREEN);
-            ssid.setText(wifiInfo.getSSID());
-            macAddress.setText(wifiInfo.getMacAddress());
+            txtStatus.setText("Connected");
+            txtStatus.setTextColor(Color.GREEN);
+            txtSsid.setText(wifiInfo.getSSID());
+            txtMacAddress.setText(wifiInfo.getMacAddress());
             Long ip= Long.valueOf(wifiInfo.getIpAddress());
-            ipAddress.setText(longToIp(ip));
+            txtIpAddress.setText(longToIp(ip));
             Integer ls=wifiInfo.getLinkSpeed();
-            linkSpeed.setText(ls.toString()+" mb/s");
+            txtLinkSpeed.setText(ls.toString()+" mb/s");
         }
     }
 
