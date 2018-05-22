@@ -50,12 +50,12 @@ public class WirelessFragment extends Fragment {
         WifiInfo wifiInfo;
         wifiInfo = wifiManager.getConnectionInfo();
         if(wifiManager.isWifiEnabled()==false){
-            status.setText("Enable WIFI adpater");
+            status.setText("Enable the WIFI adpater");
             status.setTextColor(Color.RED);
 
         }
         else if(wifiInfo.getSupplicantState()!= SupplicantState.COMPLETED){
-            status.setText("Connect to the network");
+            status.setText("Connect to a network");
             status.setTextColor(Color.RED);
 
         }
