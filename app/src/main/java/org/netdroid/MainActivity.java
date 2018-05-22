@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         public void addFrag(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
+
         }
 
         @Override
