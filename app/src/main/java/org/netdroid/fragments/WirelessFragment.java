@@ -10,21 +10,27 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import org.netdroid.R;
+import org.netdroid.WiFiCustomAdapter;
+import org.netdroid.WifiNetworkBean;
+
+import java.util.ArrayList;
 
 /**
  * Created by lewin on 10.05.2018.
  */
 
-public class WirelessFragment extends Fragment {
+public class WirelessFragment extends Fragment implements android.view.View.OnClickListener {
     //TODO: ON RESUME() -> IT SHOULD REFRESH DATA
     TextView txtSsid;
     TextView txtIpAddress;
     TextView txtMacAddress;
     TextView txtStatus;
     TextView txtLinkSpeed;
+    ListView listView;
 
     public WirelessFragment(){
 
@@ -33,7 +39,6 @@ public class WirelessFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -49,7 +54,9 @@ public class WirelessFragment extends Fragment {
         txtStatus.setText("");
         txtLinkSpeed =v.findViewById(R.id.txtLinkVal);
         txtLinkSpeed.setText("");
+        listView = v.findViewById(R.id.listWiFi);
         setConnectionInfo();
+        scanNetworks();
         return v;
     }
 
@@ -79,12 +86,30 @@ public class WirelessFragment extends Fragment {
         }
     }
 
+    private void scanNetworks(){
+        ArrayList<WifiNetworkBean> beans = new ArrayList<WifiNetworkBean>();
+        beans.add(new WifiNetworkBean("A","1","2"));
+        beans.add(new WifiNetworkBean("B","2","4"));
+        beans.add(new WifiNetworkBean("B","2","4"));
+        beans.add(new WifiNetworkBean("B","2","4"));
+        beans.add(new WifiNetworkBean("B","2","4"));
+        beans.add(new WifiNetworkBean("B","2","4"));
+        beans.add(new WifiNetworkBean("B","2","4"));
+        beans.add(new WifiNetworkBean("B","2","4"));
+        listView.setAdapter(new WiFiCustomAdapter(getContext(), R.layout.wireless_list_item, beans));
+    }
+
     public String longToIp(long i) {
 
         return ((i & 0xFF) +
                 "." + ((i >> 8) & 0xFF) +
                 "." + ((i >> 16) & 0xFF) +
                 "." +((i >> 24) & 0xFF));
+
+    }
+
+    @Override
+    public void onClick(View view) {
 
     }
 }

@@ -16,7 +16,7 @@
             android:text="@string/wirelessSsidLabel" />
 
         <TextView
-            android:id="@+id/txtSsid"
+            android:id="@+id/txtItemSsid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -36,7 +36,7 @@
             android:text="@string/wirelessChannel" />
 
         <TextView
-            android:id="@+id/txtChannel"
+            android:id="@+id/txtItemChannel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -55,7 +55,7 @@
             android:text="@string/wirelessFreq" />
 
         <TextView
-            android:id="@+id/txtFrequency"
+            android:id="@+id/txtItemFreq"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
