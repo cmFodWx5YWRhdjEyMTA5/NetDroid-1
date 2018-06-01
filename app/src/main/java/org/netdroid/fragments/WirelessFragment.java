@@ -1,7 +1,11 @@
 package org.netdroid.fragments;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
+import android.net.wifi.ScanResult;
 import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -18,6 +22,7 @@ import org.netdroid.WiFiCustomAdapter;
 import org.netdroid.WifiNetworkBean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by lewin on 10.05.2018.
@@ -31,6 +36,21 @@ public class WirelessFragment extends Fragment implements android.view.View.OnCl
     TextView txtStatus;
     TextView txtLinkSpeed;
     ListView listView;
+    WifiManager wifiManager;
+
+    private final BroadcastReceiver mWifiScanReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)) {
+                List<ScanResult> mScanResults = wifiManager.getScanResults();
+                ArrayList<WifiNetworkBean> beans = new ArrayList<WifiNetworkBean>();
+                for(ScanResult s : mScanResults) {
+                    beans.add(new WifiNetworkBean(s.SSID, Integer.toString(s.frequency), Integer.toString(s.channelWidth)));
+                }
+                listView.setAdapter(new WiFiCustomAdapter(getContext(), R.layout.wireless_list_item, beans));
+            }
+        }
+    };
 
     public WirelessFragment(){
 
@@ -39,6 +59,8 @@ public class WirelessFragment extends Fragment implements android.view.View.OnCl
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        wifiManager = (WifiManager) getContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        getActivity().registerReceiver(mWifiScanReceiver, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
     }
 
     @Override
@@ -56,12 +78,11 @@ public class WirelessFragment extends Fragment implements android.view.View.OnCl
         txtLinkSpeed.setText("");
         listView = v.findViewById(R.id.listWiFi);
         setConnectionInfo();
-        scanNetworks();
+        //scanNetworks();
         return v;
     }
 
     private void setConnectionInfo() {
-        WifiManager wifiManager = (WifiManager) getContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifiInfo;
         wifiInfo = wifiManager.getConnectionInfo();
         if(wifiManager.isWifiEnabled()==false){
@@ -89,13 +110,7 @@ public class WirelessFragment extends Fragment implements android.view.View.OnCl
     private void scanNetworks(){
         ArrayList<WifiNetworkBean> beans = new ArrayList<WifiNetworkBean>();
         beans.add(new WifiNetworkBean("A","1","2"));
-        beans.add(new WifiNetworkBean("B","2","4"));
-        beans.add(new WifiNetworkBean("B","2","4"));
-        beans.add(new WifiNetworkBean("B","2","4"));
-        beans.add(new WifiNetworkBean("B","2","4"));
-        beans.add(new WifiNetworkBean("B","2","4"));
-        beans.add(new WifiNetworkBean("B","2","4"));
-        beans.add(new WifiNetworkBean("B","2","4"));
+
         listView.setAdapter(new WiFiCustomAdapter(getContext(), R.layout.wireless_list_item, beans));
     }
 
