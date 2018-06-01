@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.netdroid.R;
 import org.netdroid.WiFiCustomAdapter;
@@ -41,14 +42,13 @@ public class WirelessFragment extends Fragment implements android.view.View.OnCl
     private final BroadcastReceiver mWifiScanReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)) {
-                List<ScanResult> mScanResults = wifiManager.getScanResults();
-                ArrayList<WifiNetworkBean> beans = new ArrayList<WifiNetworkBean>();
-                for(ScanResult s : mScanResults) {
-                    beans.add(new WifiNetworkBean(s.SSID, Integer.toString(s.frequency), Integer.toString(s.channelWidth)));
-                }
-                listView.setAdapter(new WiFiCustomAdapter(getContext(), R.layout.wireless_list_item, beans));
+            Toast.makeText(getContext(), "Test", Toast.LENGTH_LONG).show();
+            List<ScanResult> mScanResults = wifiManager.getScanResults();
+            ArrayList<WifiNetworkBean> beans = new ArrayList<WifiNetworkBean>();
+            for(ScanResult s : mScanResults) {
+                beans.add(new WifiNetworkBean(s.SSID, Integer.toString(s.frequency), Integer.toString(s.channelWidth)));
             }
+            listView.setAdapter(new WiFiCustomAdapter(getContext(), R.layout.wireless_list_item, beans));
         }
     };
 
@@ -78,6 +78,9 @@ public class WirelessFragment extends Fragment implements android.view.View.OnCl
         txtLinkSpeed.setText("");
         listView = v.findViewById(R.id.listWiFi);
         setConnectionInfo();
+        wifiManager.startScan();
+        List<ScanResult> mScanResults = wifiManager.getScanResults();
+        Toast.makeText(getActivity().getApplicationContext(), Integer.toString(mScanResults.size()), Toast.LENGTH_LONG).show();
         //scanNetworks();
         return v;
     }
