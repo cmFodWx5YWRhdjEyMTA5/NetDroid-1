@@ -12,4 +12,19 @@
     <string name="wirelessFreq">Freq :</string>
     <string name="wirelessLinkSpeedButton">Speed chart</string>
     <string name="wirelessFreqButton">Channels</string>
+    <string name="home_line_1">Hello!</string>
+    <string name="home_line_2">We are very happy that you want to try this application.</string>
+    <string name="home_line_3">Easy detection of computers, saving data about them, detecting services... Is this what you are looking for?</string>
+    <string name="home_line_4">These are several functions that you will find in this application.</string>
+    <string name="home_line_5">Try it and enjoy the functionality from the first moments.</string>
+    <string name="home_line_6">So... now it\'s your application!</string>
+    <string name="about_line_1">About NetDroid</string>
+    <string name="about_authors">Authors :</string>
+    <string name="about_author_1">Michał Kuźma</string>
+    <string name="about_author_2">Marek Lewiński</string>
+    <string name="about_author_3">Marcelina Filo</string>
+    <string name="about_description">Description</string>
+    <string name="about_description_content">NetDroid is an application developed to assist network administrators in their everyday tasks by providing them basic network diagnostic tools in a handheld device. It allows you to scan the network to look for accessible devices, perform a port-scan on them and analyze neighbouring WiFi networks.</string>
+    <string name="about_legal">Legal disclaimer</string>
+    <string name="about_legal_content">Port scanning (also known as port-knocking) is considered illegal in several countries or has not defined legal status. We do not take any responsibility for the usage of this appliaction in any action against the local law</string>
 </resources>
