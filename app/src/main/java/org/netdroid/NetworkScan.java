@@ -2,7 +2,10 @@ package org.netdroid;
 
 import android.app.Activity;
 import android.os.AsyncTask;
+import android.support.v7.widget.LinearLayoutManager;
 import android.widget.TextView;
+
+import org.netdroid.fragments.NetworkFragment;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -20,9 +23,10 @@ import java.util.Iterator;
 public class NetworkScan extends AsyncTask<String, Void, ArrayList<String>> {
 
     Activity activity;
-
-    public NetworkScan(Activity a) {
+    NetworkFragment fragment;
+    public NetworkScan(Activity a,NetworkFragment fragmentClass) {
         this.activity = a;
+        this.fragment=fragmentClass;
     }
 
     @Override
@@ -50,11 +54,18 @@ public class NetworkScan extends AsyncTask<String, Void, ArrayList<String>> {
 
     @Override
     protected void onPostExecute(ArrayList<String> result) {
-        TextView txt = (TextView) activity.findViewById(R.id.txt);
-        for (int i = 0; i < result.size(); i++) {
-            txt.setText(txt.getText() + "\n" + result.get(i));
-
+       // TextView txt = (TextView) activity.findViewById(R.id.txt);
+        ArrayList<String> ipList=new ArrayList<>();
+        ArrayList<String> macList=new ArrayList<>();
+        for (int i = 1; i < result.size(); i++) {
+           // txt.setText(txt.getText() + "\n" + result.get(i));
+            String[] stringFragment=result.get(i).split(" ");
+            ipList.add(stringFragment[0]);
+            macList.add(stringFragment[24]);
         }
+
+        fragment.recyclerView.setAdapter(new NetworkFragmentRecyclerViewAdapter(activity.getApplicationContext(),ipList,macList));
+        fragment.recyclerView.setLayoutManager(new LinearLayoutManager(activity.getApplicationContext()));
     }
 
 

@@ -6,12 +6,14 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.netdroid.NetworkFragmentRecyclerViewAdapter;
 import org.netdroid.NetworkScan;
 import org.netdroid.R;
 import org.netdroid.model.Host;
@@ -36,6 +38,9 @@ public class NetworkFragment extends Fragment {
 
     private TextView txt;
     private Button scanButton;
+    public RecyclerView recyclerView;
+
+
 
     public NetworkFragment() {
 
@@ -49,7 +54,7 @@ public class NetworkFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_network, container, false);
-        txt = v.findViewById(R.id.txt);
+        txt=(TextView)v.findViewById(R.id.errorTxt);
         scanButton = (Button) v.findViewById(R.id.scanButton);
         scanButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +62,7 @@ public class NetworkFragment extends Fragment {
                 performAScan();
             }
         });
+        recyclerView=(RecyclerView)v.findViewById(R.id.rView);
         return v;
     }
 
@@ -75,7 +81,7 @@ public class NetworkFragment extends Fragment {
             for (int i = 0; i <= hostCount - 1; i++) {
                 hostList[i] = longToIp(Integer.reverseBytes(networkAddress) + (i + 1));
             }
-            new NetworkScan(this.getActivity()).execute(hostList);
+            new NetworkScan(this.getActivity(),this).execute(hostList);
 
         }
     }
