@@ -17,7 +17,6 @@ import org.netdroid.fragments.AboutFragment;
 import org.netdroid.fragments.HomeFragment;
 import org.netdroid.fragments.NetworkFragment;
 import org.netdroid.fragments.WirelessFragment;
-import org.netdroid.fragments.ToolsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new HomeFragment(), "Home");
-        adapter.addFrag(new ToolsFragment(), "Tools");
         adapter.addFrag(new NetworkFragment(), "Net");
         adapter.addFrag(new WirelessFragment(), "WiFi");
         adapter.addFrag(new AboutFragment(), "About");
