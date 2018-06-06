@@ -42,7 +42,6 @@ public class WirelessFragment extends Fragment implements android.view.View.OnCl
     private final BroadcastReceiver mWifiScanReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Toast.makeText(getContext(), "Test", Toast.LENGTH_LONG).show();
             List<ScanResult> mScanResults = wifiManager.getScanResults();
             ArrayList<WifiNetworkBean> beans = new ArrayList<WifiNetworkBean>();
             for(ScanResult s : mScanResults) {
@@ -80,8 +79,6 @@ public class WirelessFragment extends Fragment implements android.view.View.OnCl
         setConnectionInfo();
         wifiManager.startScan();
         List<ScanResult> mScanResults = wifiManager.getScanResults();
-        Toast.makeText(getActivity().getApplicationContext(), Integer.toString(mScanResults.size()), Toast.LENGTH_LONG).show();
-        //scanNetworks();
         return v;
     }
 
