@@ -79,7 +79,7 @@ public class NetworkFragment extends Fragment {
             txt.setText("Connect to a network");
         } else {
             int networkAddress = wifiManager.getDhcpInfo().netmask & wifiManager.getDhcpInfo().ipAddress;
-            int hostCount = (int) Math.pow(2, (32 - Integer.bitCount(wifiManager.getDhcpInfo().netmask)));
+            int hostCount =  bitsToInt(32 - Integer.bitCount(wifiManager.getDhcpInfo().netmask));
             String[] hostList = new String[hostCount];
             for (int i = 0; i <= hostCount - 1; i++) {
                 hostList[i] = longToIp(Integer.reverseBytes(networkAddress) + (i + 1));
@@ -87,6 +87,15 @@ public class NetworkFragment extends Fragment {
             new NetworkScan(this.getActivity(),this).execute(hostList);
 
         }
+    }
+
+    private int bitsToInt(int i) {
+        int integerNumber=0;
+        for(int j=0;i<j;i++){
+            integerNumber=(int)(integerNumber+Math.pow(2,(double)j));
+
+        }
+        return integerNumber;
     }
 
     public String longToIp(int i) {
