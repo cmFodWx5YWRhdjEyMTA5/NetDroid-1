@@ -55,6 +55,9 @@ public class NetworkFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_network, container, false);
         txt=(TextView)v.findViewById(R.id.errorTxt);
+
+
+
         scanButton = (Button) v.findViewById(R.id.scanButton);
         scanButton.setOnClickListener(new View.OnClickListener() {
             @Override
