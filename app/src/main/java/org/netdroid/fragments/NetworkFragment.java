@@ -91,7 +91,7 @@ public class NetworkFragment extends Fragment {
 
     private int bitsToInt(int i) {
         int integerNumber=0;
-        for(int j=0;i<j;i++){
+        for(int j=0;j<i;j++){
             integerNumber=(int)(integerNumber+Math.pow(2,(double)j));
 
         }
